@@ -6,7 +6,7 @@
       }
       
       $(function() {
-        // gnb
+        // gnb 이벤트
         var link = document.querySelectorAll("#gnb a");
         for (let i = 0; i < link.length; i++) {
           link[i].addEventListener("click", function() {
@@ -17,7 +17,7 @@
           });
         }
         
-        // 우측 인디케이터
+        // 우측 인디케이터 이벤트
         $("#pager li a").click(function() {
           $("#pager li").removeClass("on");
           $(this).parent().addClass("on");
@@ -33,5 +33,28 @@
             .eq(page_num)
             .addClass("on");
         }
+
+        // scroll 이벤트
+        var s = $('section').length;
+        var sec_top_y = [];
+        for(var i = 0; i < s; i++){
+          sec_top_y[i] = $('section').eq(i).offset().top;
+          console.log(sec_top_y)
+        }
+
+        $(window).scroll(function(){
+          var top = $(this).scrollTop();
+          if(top >= sec_top_y[0]){
+            update_pager(0);
+          }
+          if(top >= sec_top_y[1]){
+            update_pager(1);
+          }
+          if(top >= sec_top_y[2]){
+            update_pager(2);
+          }
+
+        })
+
 
       }); // end $
