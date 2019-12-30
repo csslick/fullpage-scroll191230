@@ -12,6 +12,8 @@
           link[i].addEventListener("click", function() {
             var top = document.querySelector(link[i].hash).offsetTop;
             goto_scroll(top);
+            // 인디케이터 업데이트
+            update_pager(i);
           });
         }
         
@@ -22,5 +24,14 @@
           var top = $(this.hash).offset().top;
           goto_scroll(top);
         });
+
+        // 인디케이터 업데이트 함수
+        function update_pager(page_num){
+          console.log(page_num);
+          $("#pager li").removeClass("on");
+          $('#pager li')
+            .eq(page_num)
+            .addClass("on");
+        }
 
       }); // end $
